@@ -1,61 +1,79 @@
-#ifndef DADOSCOMPRAS_H_INCLUDED
-#define DADOSCOMPRAS_H_INCLUDED
-#define MAX_DADOS 100
+#ifndef CADASTRORACAO_H_INCLUDED
+#define CADASTRORACAO_H_INCLUDED
 
-void exibirDados() {
-    FILE *arquivo = fopen("dadosProp.txt", "r");
-    if (!arquivo) {
-        printf("Nenhuma informacao encontrada!\n");
+// Estrutura para armazenar os dados de ração e vendas
+typedef struct
+{
+    int numeroComprasRacao, numeroVendasLote;
+    float precoRacao, precoPelaVenda;
+
+} CadastroRacao;
+
+
+void salvarDadosRacao(CadastroRacao dados1)
+{
+
+    FILE *arquivo = fopen("racao_vendas.txt", "a"); // Abre o arquivo no modo append
+    if (arquivo == NULL)
+    {
+        perror("Erro ao abrir o arquivo para salvar dados");
+        getchar();
         return;
     }
 
-    char dados[MAX_DADOS];
-    printf("Informacoes salvas:\n");
-    printf("-----------------------------\n");
-    while (fgets(dados, MAX_DADOS, arquivo)) {
-        printf("- %s", dados);
-    }
-    printf("\n-----------------------------\n");
+
+// Salva os dados da estrutura no arquivo
+    fprintf(arquivo, "%d %.2f %d %.2f\n", dados1.numeroComprasRacao, dados1.precoRacao, dados1.numeroVendasLote, dados1.precoPelaVenda);
 
     fclose(arquivo);
+    printf("Dados salvos com sucesso.\n");
 }
 
-void salvarDados(double valorRacao, int comprasRacao, int vendasLotes) {
-    FILE *arquivo = fopen("dadosProp.txt", "a"); // Abre o arquivo em modo de anexo
-    if (!arquivo) {
-        printf("Erro ao abrir o arquivo para salvar os dados.\n");
+void lerarquivo()
+{
+
+    FILE *arquivo = fopen("racao_vendas.txt", "r");
+    if (arquivo == NULL)
+    {
+        perror("Erro ao abrir o arquivo para salvar dados");
+        getchar();
         return;
     }
 
-    fprintf(arquivo, "Valor da ração: %.2lf\n", valorRacao);
-    fprintf(arquivo, "Número de compras de ração: %d\n", comprasRacao);
-    fprintf(arquivo, "Número de vendas de lotes no mês: %d\n", vendasLotes);
-    fprintf(arquivo, "-----------------------------\n");
+    int ncra, nvla;
+    float pra, pva;
 
-    fclose(arquivo);
-    printf("Dados salvos com sucesso!\n");
-}
-
-void entradaDados() {
-    // Exemplo de uso
-    double valorRacao;
-    int comprasRacao, vendasLotes;
-
-    printf("Digite o valor da ração: ");
-    scanf("%lf", &valorRacao);
-    printf("Digite o número de compras de ração: ");
-    scanf("%d", &comprasRacao);
-    printf("Digite o número de vendas de lotes no mês: ");
-    scanf("%d", &vendasLotes);
-
-    salvarDados(valorRacao, comprasRacao, vendasLotes);
-    exibirDados();
-
-    return 0;
-
-
+    while (fscanf(arquivo, "%d %f %d %f\n", &ncra, &pra, &nvla, &pva) != EOF)
+    {
+        printf("Quantidade de ração comprada: %d\nPreço das rações: %.2f\nQuantidade de vendas do lote: %d\nPreço de venda do lote: %.2f", ncra, pra, nvla, pva);
+    }
 
 }
 
 
-#endif // DADOSCOMPRAS_H_INCLUDED
+
+// Função para capturar os dados do usuário
+void registrarDadosUsuario1()
+{
+    CadastroRacao dados;
+
+    // Capturando o número de compras de ração
+    printf("Digite o número de compras de ração realizadas: ");
+    scanf("%d", &dados.numeroComprasRacao);
+
+    // Capturando o preço da ração
+    printf("Digite o preço da ração (por kg ou por unidade): ");
+    scanf("%f", &dados.precoRacao);
+
+    // Capturando o número de vendas de lote
+    printf("Digite o número de vendas de lote realizadas: ");
+    scanf("%d", &dados.numeroVendasLote);
+
+    printf("Digite o valor arrecadado com a venda: ");
+    scanf("%f", &dados.precoPelaVenda);
+
+    // Salvar os dados no arquivo
+    salvarDadosRacao(dados);
+}
+
+#endif // CADASTRORACAO_H_INCLUDED
