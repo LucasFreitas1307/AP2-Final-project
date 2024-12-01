@@ -1,6 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
+#include "cadastrodelotes.h"  // Certifique-se de incluir a header corretamente
+#include "listartarefas.h"
+#include "criartarefas.h"
+#include "funcoesAP2.h"
+#include "cadastroRacao.h"
+
+
+#define MAX_ANIMAIS 100
+#define MAX_TAREFA 256
 
 void limparTela()
 {
@@ -13,9 +23,17 @@ void limparTela()
 
 int main()
 {
-    int op, cargo, cargoarq, op2;
+
+    setlocale(LC_ALL, "Portuguese");
+
+    int op, cargo, cargoarq, op2, ub, voltarMenu;
     char senha[50], nome[50], senhaconf[50], nomearq[50], senhaarq[50];
     FILE *arqlogin;
+
+    Animal animais[MAX_ANIMAIS];  // Declarando a variável animais
+    int quantidadeAnimais = 0;  // Inicializando a quantidade de animais
+    float ganhoTotal = 0.0, gastoTotalRacao = 0;
+    int numeroDeVendas = 0, quantidadeDeComprasDeRacao = 0;
 
     do
     {
@@ -24,7 +42,7 @@ int main()
         printf("\n1- Cadastro;");
         printf("\n2- Login;");
         printf("\n0- Sair.");
-        printf("\n\nEscolha uma opcao: ");
+        printf("\n\nEscolha uma opção: ");
         scanf("%d", &op);
         getchar();
 
@@ -32,7 +50,7 @@ int main()
         {
         case 0:
             printf("Saindo...\n");
-            return 0;
+            break;
 
         case 1:
             limparTela();
@@ -40,30 +58,34 @@ int main()
 
             do
             {
-                limparTela();
                 printf("Escolha o cargo:\n");
                 printf("1- Colaborador;\n");
                 printf("2- Admin.\n");
+                printf("0- Se deseja retornar ao menu\n");
                 printf("\nDigite sua escolha: ");
                 scanf("%d", &cargo);
                 getchar();
 
-                if (cargo != 1 && cargo != 2)
+                if (cargo != 1 && cargo != 2 && cargo != 0)
                 {
                     limparTela();
-                    printf("Opcao invalida.\n\n");
+                    printf("Opção inválida.\n\n");
                     printf("Pressione Enter para tentar novamente...");
                     getchar();
                 }
             }
-            while (cargo != 1 && cargo != 2);
+            while (cargo != 1 && cargo != 2 && cargo != 0);
 
             do
             {
+                if(cargo == 0){
+                    break;
+                }
+
                 limparTela();
                 printf("----CADASTRO----\n");
 
-                printf("Digite seu nome de usuario: ");
+                printf("Digite seu nome de usuário: ");
                 fgets(nome, sizeof(nome), stdin);
                 nome[strcspn(nome, "\n")] = '\0';
 
@@ -78,7 +100,7 @@ int main()
                 if (strcmp(senha, senhaconf) != 0)
                 {
                     limparTela();
-                    printf("As senhas nao coincidem.\n\n");
+                    printf("As senhas não coincidem.\n\n");
                     printf("Pressione Enter para tentar novamente...");
                     getchar();
                 }
@@ -98,168 +120,212 @@ int main()
             printf("Cadastro realizado com sucesso!\n");
             break;
 
+
         case 2:
             arqlogin = fopen("dados.txt", "r");
             if (arqlogin == NULL)
             {
                 limparTela();
-                printf("Erro ao abrir o arquivo. Talvez voce precise se cadastrar primeiro.\n\n");
+                printf("Erro ao abrir o arquivo. Talvez você precise se cadastrar primeiro.\n\n");
                 printf("Pressione ENTER para tentar novamente...");
                 getchar();
                 break;
             }
 
-            int login_success = 0;
+            int login_success = 0; // Variável de controle para login
 
-            do
+            while (login_success != 1) // Loop infinito até o login ser bem-sucedido
             {
                 limparTela();
                 printf("----LOGIN----\n");
 
-                printf("Digite seu nome de usuario: ");
+                printf("Deseja retornar ao menu? Digite 0, caso contrário digite 1\n");
+                scanf("%d", &voltarMenu);
+
+                if(voltarMenu == 0){
+                    break;
+                }
+
+                getchar();
+                printf("Digite seu nome de usuário: ");
                 fgets(nome, sizeof(nome), stdin);
-                nome[strcspn(nome, "\n")] = '\0';
+                nome[strcspn(nome, "\n")] = '\0';  // Remover o '\n' no final da string
+                fflush(stdin);
 
                 printf("Digite sua senha: ");
                 fgets(senha, sizeof(senha), stdin);
-                senha[strcspn(senha, "\n")] = '\0';
+                senha[strcspn(senha, "\n")] = '\0';  // Remover o '\n' no final da string
+                fflush(stdin);
 
+                // Percorrer o arquivo e verificar se o login é correto
+                int encontrado = 0;
                 while (fscanf(arqlogin, "%49[^,],%49[^,],%d\n", nomearq, senhaarq, &cargoarq) != EOF)
                 {
                     if (strcmp(nome, nomearq) == 0 && strcmp(senha, senhaarq) == 0)
                     {
-                        login_success = 1;
+                        login_success = 1;  // Login bem-sucedido
+                        encontrado = 1;
                         break;
                     }
                 }
 
-                fclose(arqlogin);
-
-                if (login_success)
+                if (encontrado==1)
                 {
-                    if (cargoarq == 1)
+                    // Login bem-sucedido, seguir para o menu
+                    do
                     {
-                        do
+                        limparTela();
+                        printf("Logado como: %s (%s)\n\n", nomearq, (cargoarq == 1) ? "Colaborador" : "Administrador");
+                        printf("---MENU---\n");
+                        printf("1- Cadastro de lotes\n");
+                        printf("2- Listagem de lotes\n");
+                        printf("3- Salvar dados de lotes\n");
+                        printf("4- Listar tarefas\n");
+                        if (cargoarq == 2)
                         {
-                            limparTela();
-                            printf("Logado como: %s (Colaborador)\n\n", nomearq);
-                            printf("---MENU---\n");
-                            printf("1- Cadastro de lotes\n");
-                            printf("2- Cadastro de tarefas\n");
-                            printf("3- Vizualização de tarefas \n ");
-                            printf("4- Cadastro de informacoes do proprietario");
-                            printf("5- Vizualizar ICA \n");
-                            printf("6- Vizualizar média de lucro \n");
-                            printf("7- ")
-                            printf("0- Deslogar/Sair\n\n");
-                            printf("Selecione uma opcao: ");
-                            scanf("%d", &op2);
-                            getchar();
-
-                            switch (op2)
-                            {
-                            case 1:
-                                printf("Opcao 1 selecionada.\n");
-                                getchar();
-                                break;
-                            case 2:
-                                printf("Opcao 2 selecionada.\n");
-                                getchar();
-                                break;
-                            case 0:
-                                printf("Deslogando...\n");
-                                break;
-                            default:
-                                limparTela();
-                                printf("Opcao invalida.\n\n");
-                                printf("Pressione ENTER para tentar novamente.");
-                                getchar();
-                            }
+                            printf("5- Criar nova tarefa\n");
+                            printf("6- Exibir ICA (Índice de Conversão Alimentar)\n");
+                            printf("7- Média de Lucro\n");
+                            printf("8- Testar Peso Ideal para Venda\n");
+                            printf("9- Cadastrar dados mensais\n");
                         }
-                        while (op2 != 0);
-                    }
-                    else
-                    {
-                        do
+                        printf("0- Deslogar/Sair\n\n");
+                        printf("Selecione uma opção: ");
+                        scanf("%d", &op2);
+                        getchar();
+
+                        switch (op2)
                         {
-                            limparTela();
-                            printf("Logado como: %s (Administrador)\n\n", nomearq);
-                            printf("---MENU---\n");
-                            printf("1- Criacao de tarefas \n");
-                            printf("2- Listagem de tarefas \n");
-                            printf("3- Cadastro de lotes");
-                            printf("4- Listagem de lotes");
-                            printf("5- Ver ICA(Indice de conversao alimentar)");
-                            printf("6- Ver previsao de lucros");
-                            printf("7- Situacao dos lotes(pronto para abate ou nao)");
-                            printf("8- ")
-
-                            printf("0- Deslogar/Sair\n\n");
-                            printf("Selecione uma opcao: ");
-                            scanf("%d", &op2);
+                        case 1:
+                            printf("Quantos lotes serão cadastrados: ");
+                            scanf("%d", &quantidadeAnimais);
+                            cadastrarLote(animais, &quantidadeAnimais);
                             getchar();
-
-                            switch (op2)
+                            break;
+                        case 2:
+                            listarLotes(animais, &quantidadeAnimais);
+                            getchar();
+                            break;
+                        case 3:
+                            salvarDados(animais, &quantidadeAnimais);
+                            getchar();
+                            break;
+                        case 4:
+                            listarTarefas();
+                            getchar();
+                            break;
+                        case 5:
+                            if (cargoarq == 2)
                             {
-                            case 1:
-                                printf("Opcao 1 selecionada.\n");
                                 criarTarefa();
                                 getchar();
-                                break;
-                            case 2:
-                                printf("Opcao 2 selecionada.\n");
-                                listarTarefas();
+                            }
+                            break;
+                        case 6:
+                            if (cargoarq == 2)
+                            {
+                                float ganhoPeso;
+                                printf("Digite o ganho de peso por animal ao mês: ");
+                                scanf("%f", &ganhoPeso);
+                                printf("Digite a quantidade de consumo de ração por animal ao mês: ");
+                                scanf("%f", &gastoTotalRacao);
                                 getchar();
-                                break;
-                            case 3:
-                                printf("Opcao 3 selecionada.");
-                                cadastrarLote();
-                                salvarDados();
-                                getchar();
-                                break;
-                            case 4:
-                                printf("Opcao 4 selecionada.");
-                                listarLotes();
-                                getchar();
-                                break;
-                            case 5:
-                                printf("Opcao 5 selecionada");
-                                printf("%lf", mediaGanho());
-                                getchar();
-                                break;
-                            case 6:
-                                printf("Opcao 6 selecionada.");
-
-
-
-
-                            case 0:
-                                printf("Deslogando...\n");
-                                break;
-                            default:
-                                limparTela();
-                                printf("Opcao invalida! Tente novamente.\n\n");
-                                printf("Pressione ENTER para tentar novamente.");
+                                printf("Índice de Conversão Alimentar (ICA): %.2lf\n", ICA(gastoTotalRacao, ganhoPeso));
                                 getchar();
                             }
+                            break;
+                        case 7:
+                            if (cargoarq == 2)
+                            {
+                                printf("Digite o ganho total com as vendas: ");
+                                scanf("%f", &ganhoTotal);
+                                printf("Digite o gasto total de manutenção do gado: ");
+                                scanf("%f", &gastoTotalRacao);
+                                getchar();
+                                printf("Média de Lucro: %.2lf R$\n", mediaLucro(ganhoTotal, gastoTotalRacao));
+                                printf("Pressione enter para retornar ao menu...\n");
+                                getchar();
+                            }
+                            break;
+                        case 8:
+                            if (cargoarq == 2)
+                            {
+                                float peso, custo, preco;
+                                printf("Digite o peso atual (kg): ");
+                                scanf("%f", &peso);
+                                printf("Digite o custo por kg: ");
+                                scanf("%f", &custo);
+                                printf("Digite o preço de venda por kg: ");
+                                scanf("%f", &preco);
+                                getchar();
+                                if (testePesoIdeal(peso, custo, preco) == 0)
+                                {
+                                    printf("Peso ideal para venda.\n");
+                                }
+                                else
+                                {
+                                    printf("Peso insuficiente para venda.\n");
+                                }
+                                getchar();
+                            }
+                            break;
+                        case 9:  // Nova opção para registrar compras de ração e vendas de lote
+                            if (cargoarq == 2)
+                            {
+                                int op3;
+                                // Exemplo de opção para registro e consulta de dados de ração
+                                limparTela();
+                                printf("--- Gestão de Ração e Vendas ---\n");
+                                printf("1 - Registrar dados de ração\n");
+                                printf("2 - Exibir dados registrados\n");
+                                printf("0 - Voltar ao menu principal\n");
+                                printf("Escolha uma opção: ");
+                                scanf("%d", &op3);
+                                getchar();
+
+                                switch(op3){
+                                    case 1:
+                                        registrarDadosUsuario1();
+                                        getchar();
+                                    break;
+
+                                    case 2:
+                                        lerarquivo();
+                                        getchar();
+                                    break;
+                                }
+                            }
+                        case 0:
+                            printf("Deslogando...\n");
+                            break;
+                        default:
+                            limparTela();
+                            printf("Opção inválida! Tente novamente.\n\n");
+                            printf("Pressione ENTER para tentar novamente.");
+                            getchar();
                         }
-                        while (op2 != 0);
                     }
+                    while (op2 != 0);
                 }
-                else
+                else if(encontrado != 1)
                 {
                     limparTela();
-                    printf("Usuario ou senha incorretos.\n\n");
+                    printf("Usuário ou senha incorretos.\n\n");
                     printf("Pressione Enter para tentar novamente...");
                     getchar();
                 }
-            }
-            while (!login_success) ;
 
+                // Reposicionar o ponteiro do arquivo para o começo após ler todas as entradas
+                fseek(arqlogin, 0, SEEK_SET);
+            }
+
+            fclose(arqlogin);
             break;
+
+
         default:
             limparTela();
-            printf("Opcao invalida.\n");
+            printf("Opção inválida.\n");
             printf("\nPressione Enter para tentar novamente...");
             getchar();
             break;
@@ -269,3 +335,4 @@ int main()
 
     return 0;
 }
+
