@@ -1,35 +1,42 @@
 #ifndef FUNCOESAP2_H_INCLUDED
 #define FUNCOESAP2_H_INCLUDED
-//Média de ganho
-//Média de gasto com alimentação
-//Média de lucro
-//ICA(Índice de conversão alimentar)
-//Teste de peso ideal para venda
-
-double mediaGanho(float ganhoTotal, int numeroDeVendas){
-return ganhoTotal/numeroDeVendas;
+double mediaGanho(float ganhoTotal, int numeroDeVendas) {
+    return ganhoTotal / numeroDeVendas;
 }
+//printf("%.2lf", mediaGanho(asd, ki));
 
-double mediaGastoAlimentacao(int quantidadeDeComprasDeRacao, float gastoTotalRacao){
-return gastoTotalRacao/quantidadeDeComprasDeRacao;
+
+double mediaGastoAlimentacao(int numeroAnimais, float precoRacao, int numeroComprasRacao) {
+
+    return precoRacao * numeroComprasRacao / numeroAnimais;
 }
 
-double mediaLucro(float ganhoTotal, float gastoTotal){
-return ganhoTotal-gastoTotal;
+double mediaLucro(float ganhoTotal, float gastoTotal) {
+    return ganhoTotal - gastoTotal;
 }
 
-double ICA(float consumoDeRacao, float ganhoPeso){
-return consumoDeRacao/ganhoPeso;
+double ICA(float consumoDeRacao, float ganhoPeso) {
+    return consumoDeRacao / ganhoPeso;
+
+    // precoRacao * numerocompraracao == gastototalracao
 }
 
-bool testePesoIdeal(float peso, float gastoPorKgBoi, float precoVendaKgBoi){
-if(peso*precoVendaKgBoi>=1.3*gastoPorKgBoi){
-return True;//Se não rodar, mudar a função para int e retornar 0.
+
+/**
+ * Testa se o peso do animal é ideal para venda.
+ * @param peso - Peso atual do animal.
+ * @param gastoPorKgBoi - Custo para criar o boi por kg.
+ * @param precoVendaKgBoi - Preço de venda por kg.
+ * @return 0 se o peso é ideal, 1 caso contrário.
+ */
+int testePesoIdeal(float peso, float gastoPorKgBoi, float precoVendaKgBoi) {
+    if (peso * precoVendaKgBoi >= 1.3 * gastoPorKgBoi*peso) {
+        return 0; // Peso ideal para venda
+    } else {
+        return 1; // Não está no peso ideal
+    }
 }
-else{
-return False;//Mesma coisa, mas retorna 1.
-}
-}
+
 
 
 #endif // FUNCOESAP2_H_INCLUDED
