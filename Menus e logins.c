@@ -1,3 +1,8 @@
+# Menus and logins
+ - "This page was created by Nicolas Fernandes; these are codes developed for the login and menu sections of the software."
+
+```C
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -335,4 +340,5 @@ int main()
 
     return 0;
 }
+```
 
