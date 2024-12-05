@@ -1,5 +1,5 @@
-# Task Creation
-- Part of the code focused on task creation, developed by Lucas Freitas.
+# Task List
+- Part of the code focused on task list, developed by Lucas Freitas.
 ```C 
 #ifndef LISTARTAREFAS_H_INCLUDED
 #define LISTARTAREFAS_H_INCLUDED
