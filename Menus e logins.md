@@ -1,5 +1,5 @@
 # Menus and logins
- - "This page was created by Nicolas Fernandes; these are codes developed for the login and menu sections of the software."
+ - This page was created by Nicolas Fernandes; these are codes developed for the login and menu sections of the software.
 
 ```C
 
