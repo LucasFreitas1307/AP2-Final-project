@@ -1,3 +1,6 @@
+# Purchase Data
+- Part of the code focused on storing purchase data, developed by Lucas Freitas.
+```C
 #ifndef CADASTRORACAO_H_INCLUDED
 #define CADASTRORACAO_H_INCLUDED
 
@@ -77,3 +80,4 @@ void registrarDadosUsuario1()
 }
 
 #endif // CADASTRORACAO_H_INCLUDED
+```
