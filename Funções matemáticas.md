@@ -1,3 +1,8 @@
+# Math functions
+- Part of the code focused on mathematical functions, developed by Luis Felipe Scheneider.
+
+ ```C 
+
 #ifndef FUNCOESAP2_H_INCLUDED
 #define FUNCOESAP2_H_INCLUDED
 double mediaGanho(float ganhoTotal, int numeroDeVendas) {
@@ -40,3 +45,4 @@ int testePesoIdeal(float peso, float gastoPorKgBoi, float precoVendaKgBoi) {
 
 
 #endif // FUNCOESAP2_H_INCLUDED
+```
