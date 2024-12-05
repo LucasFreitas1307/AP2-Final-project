@@ -13,7 +13,8 @@
 </div> 
  
  <div align="center">
- - Devs: Lucas D Freitas, Luis Felipe Schneiders, Nicolas Fernandes, Paulo Otavio Costa e João Vitor Campos
+ - Devs:
+   [Luis Felipe](https://github.com/Schneiderss) 
  </div>
 
 <img src="https://github.com/user-attachments/assets/348deefc-8af6-46e5-ae5d-7b0318831a3c" alt="CIcon" width="445" height="215">
