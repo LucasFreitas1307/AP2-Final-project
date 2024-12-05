@@ -16,4 +16,5 @@
  - Devs: Lucas D Freitas, Luis Felipe Schneiders, Nicolas Fernandes, Paulo Otavio Costa e João Vitor Campos
  </div>
 
-![imagem_2024-12-01_203122919](https://github.com/user-attachments/assets/e2629073-8ebe-4023-ae7a-f75e08a80e6a)
+
+![logo_v1_horizontal](https://github.com/user-attachments/assets/348deefc-8af6-46e5-ae5d-7b0318831a3c)
