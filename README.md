@@ -8,7 +8,7 @@
 <div align="left">
 
 
-* Projeto da disciplina de algoritmos e programação 2, o CyberCow foi desenvolvido voltado para a gestão de lotes de gado de corte em fazendas de grande e pequeno porte.
+* Projeto da disciplina de algoritmos e programação 2, o CyberCow foi desenvolvido voltado para a gestão de lotes de gado de corte em fazendas de grande, médio e pequeno porte.
 * Como principais features, temos: Gestão por lotes, previsõs de lucros e gastos, opções de criação de tarefas voltadas a facilitar a comunicação entre o gestor e os funcionários e também opção de controle de alimentação gasta.
  
  
