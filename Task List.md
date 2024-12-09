@@ -4,7 +4,11 @@
 #ifndef LISTARTAREFAS_H_INCLUDED
 #define LISTARTAREFAS_H_INCLUDED
 #define MAX_TAREFA 256
+/**
+ Header destinada a função de listagem das tarefas pre salvas
+ Essa função abre o .txt e imprime para o usuario as informações ja salvas
 
+**/
 void listarTarefas()
 {
     FILE *arquivo = fopen("tarefas.txt", "r");
@@ -29,4 +33,6 @@ void listarTarefas()
 
 
 #endif // LISTARTAREFAS_H_INCLUDED
+
+
 ```
