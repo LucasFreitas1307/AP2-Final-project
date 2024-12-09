@@ -4,7 +4,12 @@
 #ifndef CRIARTAREFAS_H_INCLUDED
 #define CRIARTAREFAS_H_INCLUDED
 #define MAX_TAREFA 256
+/**
 
+ Header destinada a criação e armazenamento das tarefas definidas pelo administrador da propiedade para o colaborador
+ Função que trabalha com armazenamento e manipulação de arquivos.
+
+**/
 void criarTarefa() {
     FILE *arquivo = fopen("tarefas.txt", "a");
     if (arquivo == NULL) {
@@ -24,4 +29,5 @@ void criarTarefa() {
 
 
 #endif // CRIARTAREFAS_H_INCLUDED
+
 ```
