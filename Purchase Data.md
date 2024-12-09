@@ -3,6 +3,13 @@
 ```C
 #ifndef CADASTRORACAO_H_INCLUDED
 #define CADASTRORACAO_H_INCLUDED
+/**
+
+ Dentro dessa header temos como objetivo facilitar a gestão do administrador
+ Aqui são pedidos e armazenados dados mensais de gastos da propriedade, que poderão futuramente serem consultados
+ assim podendo à longo prazo realizar calculos de gastos anuais por exemplo.
+
+**/
 
 // Estrutura para armazenar os dados de ração e vendas
 typedef struct
@@ -48,7 +55,7 @@ void lerarquivo()
 
     while (fscanf(arquivo, "%d %f %d %f\n", &ncra, &pra, &nvla, &pva) != EOF)
     {
-        printf("Quantidade de ração comprada: %d\nPreço das rações: %.2f\nQuantidade de vendas do lote: %d\nPreço de venda do lote: %.2f", ncra, pra, nvla, pva);
+        printf("\nQuantidade de ração comprada: %d\nPreço das rações: %.2f\nQuantidade de vendas do lote: %d\nPreço de venda do lote: %.2f", ncra, pra, nvla, pva);
     }
 
 }
@@ -80,4 +87,5 @@ void registrarDadosUsuario1()
 }
 
 #endif // CADASTRORACAO_H_INCLUDED
+
 ```
