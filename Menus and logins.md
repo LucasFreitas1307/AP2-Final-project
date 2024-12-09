@@ -2,7 +2,6 @@
  - This page was created by Nicolas Fernandes; these are codes developed for the login and menu sections of the software.
 
 ```C
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -29,7 +28,11 @@ void limparTela()
 int main()
 {
 
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portuguese"); // disponibiliza a possibilidade de leitura de caracteres em portugues
+
+    /**
+    Definição de variaveis para cadastro, login e senha dentro dos menus do codigo
+    **/
 
     int op, cargo, cargoarq, op2, ub, voltarMenu;
     char senha[50], nome[50], senhaconf[50], nomearq[50], senhaarq[50];
@@ -43,6 +46,23 @@ int main()
     do
     {
         limparTela();
+        printf("                ##++      ..##..                mmmmmmmm            mmmm                            \n");
+        printf("            ++--                ##            mmmm  ::mm            mm++                            \n");
+        printf("          @@  ####          ++##..##        --mm        --mm    mm  mmmmmmmm++  mmmmmm--++mmmmmm    \n");
+        printf("          ..####              @@    ##      mmmm        --mm    mm  mmmm  mmmm  mm  mmmm  mmmmmm    \n");
+        printf("        ##    ##              ..  ##..        mmmm    mm  mm++mmmm  mmmm  mmmm++mmmm      mm        \n");
+        printf("        ..  ##..  @@########  ##  ..  ##      mmmmmmmmmm  --mmmm    mmmmmmmmmm  mmmmmmmm  mm        \n");
+        printf("            --  ##MMMMMMMMMMMM  ##    ##          ::      ..mmmm                  ..                \n");
+        printf("      MM  mm######MMMMMMMMMMMM######  ##                  mmmm                                      \n");
+        printf("      ++  ##mm##@@####MMMM##MM##mm##--##        mmmmmm                                                \n");
+        printf("              @@@@MMMMMMMMMMMM##      ##      mmmmmmmmmm                                              \n");
+        printf("        ##    ::##MMMMMMMMMMMM##              mm          mmmmmm  mmmm  mm  ::mm                     \n");
+        printf("        mm      ##@@########MMMM    ##      ++mm        mmmm  mmmmmmmm  mm  ::mm                     \n");
+        printf("          ##      ############    --          mm++      mmmm  mmmm++mm  mm++mmmm                     \n");
+        printf("            ##    ##@@@@@@@@    mm            mmmmmmmmmm..mmmmmm::  mmmm  mmmm                       \n");
+        printf("              MM##  ......  ..##                  mm::      ++        ..                             \n");
+        printf("                    ######--                                                                         \n");
+        printf("\n");
         printf("----REGISTRO----");
         printf("\n1- Cadastro;");
         printf("\n2- Login;");
@@ -59,10 +79,28 @@ int main()
 
         case 1:
             limparTela();
+            printf("                ##++      ..##..                mmmmmmmm            mmmm                            \n");
+            printf("            ++--                ##            mmmm  ::mm            mm++                            \n");
+            printf("          @@  ####          ++##..##        --mm        --mm    mm  mmmmmmmm++  mmmmmm--++mmmmmm    \n");
+            printf("          ..####              @@    ##      mmmm        --mm    mm  mmmm  mmmm  mm  mmmm  mmmmmm    \n");
+            printf("        ##    ##              ..  ##..        mmmm    mm  mm++mmmm  mmmm  mmmm++mmmm      mm        \n");
+            printf("        ..  ##..  @@########  ##  ..  ##      mmmmmmmmmm  --mmmm    mmmmmmmmmm  mmmmmmmm  mm        \n");
+            printf("            --  ##MMMMMMMMMMMM  ##    ##          ::      ..mmmm                  ..                \n");
+            printf("      MM  mm######MMMMMMMMMMMM######  ##                  mmmm                                      \n");
+            printf("      ++  ##mm##@@####MMMM##MM##mm##--##        mmmmmm                                                \n");
+            printf("              @@@@MMMMMMMMMMMM##      ##      mmmmmmmmmm                                              \n");
+            printf("        ##    ::##MMMMMMMMMMMM##              mm          mmmmmm  mmmm  mm  ::mm                     \n");
+            printf("        mm      ##@@########MMMM    ##      ++mm        mmmm  mmmmmmmm  mm  ::mm                     \n");
+            printf("          ##      ############    --          mm++      mmmm  mmmm++mm  mm++mmmm                     \n");
+            printf("            ##    ##@@@@@@@@    mm            mmmmmmmmmm..mmmmmm::  mmmm  mmmm                       \n");
+            printf("              MM##  ......  ..##                  mm::      ++        ..                             \n");
+            printf("                    ######--                                                                         \n");
+
             printf("----CADASTRO----\n");
 
             do
             {
+
                 printf("Escolha o cargo:\n");
                 printf("1- Colaborador;\n");
                 printf("2- Admin.\n");
@@ -88,6 +126,23 @@ int main()
                 }
 
                 limparTela();
+                printf("                ##++      ..##..                mmmmmmmm            mmmm                            \n");
+                printf("            ++--                ##            mmmm  ::mm            mm++                            \n");
+                printf("          @@  ####          ++##..##        --mm        --mm    mm  mmmmmmmm++  mmmmmm--++mmmmmm    \n");
+                printf("          ..####              @@    ##      mmmm        --mm    mm  mmmm  mmmm  mm  mmmm  mmmmmm    \n");
+                printf("        ##    ##              ..  ##..        mmmm    mm  mm++mmmm  mmmm  mmmm++mmmm      mm        \n");
+                printf("        ..  ##..  @@########  ##  ..  ##      mmmmmmmmmm  --mmmm    mmmmmmmmmm  mmmmmmmm  mm        \n");
+                printf("            --  ##MMMMMMMMMMMM  ##    ##          ::      ..mmmm                  ..                \n");
+                printf("      MM  mm######MMMMMMMMMMMM######  ##                  mmmm                                      \n");
+                printf("      ++  ##mm##@@####MMMM##MM##mm##--##        mmmmmm                                                \n");
+                printf("              @@@@MMMMMMMMMMMM##      ##      mmmmmmmmmm                                              \n");
+                printf("        ##    ::##MMMMMMMMMMMM##              mm          mmmmmm  mmmm  mm  ::mm                     \n");
+                printf("        mm      ##@@########MMMM    ##      ++mm        mmmm  mmmmmmmm  mm  ::mm                     \n");
+                printf("          ##      ############    --          mm++      mmmm  mmmm++mm  mm++mmmm                     \n");
+                printf("            ##    ##@@@@@@@@    mm            mmmmmmmmmm..mmmmmm::  mmmm  mmmm                       \n");
+                printf("              MM##  ......  ..##                  mm::      ++        ..                             \n");
+                printf("                    ######--                                                                         \n");
+                printf("\n");
                 printf("----CADASTRO----\n");
 
                 printf("Digite seu nome de usuário: ");
@@ -142,6 +197,23 @@ int main()
             while (login_success != 1) // Loop infinito até o login ser bem-sucedido
             {
                 limparTela();
+                printf("                ##++      ..##..                mmmmmmmm            mmmm                            \n");
+                printf("            ++--                ##            mmmm  ::mm            mm++                            \n");
+                printf("          @@  ####          ++##..##        --mm        --mm    mm  mmmmmmmm++  mmmmmm--++mmmmmm    \n");
+                printf("          ..####              @@    ##      mmmm        --mm    mm  mmmm  mmmm  mm  mmmm  mmmmmm    \n");
+                printf("        ##    ##              ..  ##..        mmmm    mm  mm++mmmm  mmmm  mmmm++mmmm      mm        \n");
+                printf("        ..  ##..  @@########  ##  ..  ##      mmmmmmmmmm  --mmmm    mmmmmmmmmm  mmmmmmmm  mm        \n");
+                printf("            --  ##MMMMMMMMMMMM  ##    ##          ::      ..mmmm                  ..                \n");
+                printf("      MM  mm######MMMMMMMMMMMM######  ##                  mmmm                                      \n");
+                printf("      ++  ##mm##@@####MMMM##MM##mm##--##        mmmmmm                                                \n");
+                printf("              @@@@MMMMMMMMMMMM##      ##      mmmmmmmmmm                                              \n");
+                printf("        ##    ::##MMMMMMMMMMMM##              mm          mmmmmm  mmmm  mm  ::mm                     \n");
+                printf("        mm      ##@@########MMMM    ##      ++mm        mmmm  mmmmmmmm  mm  ::mm                     \n");
+                printf("          ##      ############    --          mm++      mmmm  mmmm++mm  mm++mmmm                     \n");
+                printf("            ##    ##@@@@@@@@    mm            mmmmmmmmmm..mmmmmm::  mmmm  mmmm                       \n");
+                printf("              MM##  ......  ..##                  mm::      ++        ..                             \n");
+                printf("                    ######--                                                                         \n");
+                printf("\n");
                 printf("----LOGIN----\n");
 
                 printf("Deseja retornar ao menu? Digite 0, caso contrário digite 1\n");
@@ -151,7 +223,28 @@ int main()
                     break;
                 }
 
+
                 getchar();
+                limparTela();
+                printf("                ##++      ..##..                mmmmmmmm            mmmm                            \n");
+                printf("            ++--                ##            mmmm  ::mm            mm++                            \n");
+                printf("          @@  ####          ++##..##        --mm        --mm    mm  mmmmmmmm++  mmmmmm--++mmmmmm    \n");
+                printf("          ..####              @@    ##      mmmm        --mm    mm  mmmm  mmmm  mm  mmmm  mmmmmm    \n");
+                printf("        ##    ##              ..  ##..        mmmm    mm  mm++mmmm  mmmm  mmmm++mmmm      mm        \n");
+                printf("        ..  ##..  @@########  ##  ..  ##      mmmmmmmmmm  --mmmm    mmmmmmmmmm  mmmmmmmm  mm        \n");
+                printf("            --  ##MMMMMMMMMMMM  ##    ##          ::      ..mmmm                  ..                \n");
+                printf("      MM  mm######MMMMMMMMMMMM######  ##                  mmmm                                      \n");
+                printf("      ++  ##mm##@@####MMMM##MM##mm##--##        mmmmmm                                                \n");
+                printf("              @@@@MMMMMMMMMMMM##      ##      mmmmmmmmmm                                              \n");
+                printf("        ##    ::##MMMMMMMMMMMM##              mm          mmmmmm  mmmm  mm  ::mm                     \n");
+                printf("        mm      ##@@########MMMM    ##      ++mm        mmmm  mmmmmmmm  mm  ::mm                     \n");
+                printf("          ##      ############    --          mm++      mmmm  mmmm++mm  mm++mmmm                     \n");
+                printf("            ##    ##@@@@@@@@    mm            mmmmmmmmmm..mmmmmm::  mmmm  mmmm                       \n");
+                printf("              MM##  ......  ..##                  mm::      ++        ..                             \n");
+                printf("                    ######--                                                                         \n");
+                printf("\n");
+                printf("----LOGIN----\n");
+
                 printf("Digite seu nome de usuário: ");
                 fgets(nome, sizeof(nome), stdin);
                 nome[strcspn(nome, "\n")] = '\0';  // Remover o '\n' no final da string
@@ -180,6 +273,23 @@ int main()
                     do
                     {
                         limparTela();
+                        printf("                ##++      ..##..                mmmmmmmm            mmmm                            \n");
+                        printf("            ++--                ##            mmmm  ::mm            mm++                            \n");
+                        printf("          @@  ####          ++##..##        --mm        --mm    mm  mmmmmmmm++  mmmmmm--++mmmmmm    \n");
+                        printf("          ..####              @@    ##      mmmm        --mm    mm  mmmm  mmmm  mm  mmmm  mmmmmm    \n");
+                        printf("        ##    ##              ..  ##..        mmmm    mm  mm++mmmm  mmmm  mmmm++mmmm      mm        \n");
+                        printf("        ..  ##..  @@########  ##  ..  ##      mmmmmmmmmm  --mmmm    mmmmmmmmmm  mmmmmmmm  mm        \n");
+                        printf("            --  ##MMMMMMMMMMMM  ##    ##          ::      ..mmmm                  ..                \n");
+                        printf("      MM  mm######MMMMMMMMMMMM######  ##                  mmmm                                      \n");
+                        printf("      ++  ##mm##@@####MMMM##MM##mm##--##        mmmmmm                                                \n");
+                        printf("              @@@@MMMMMMMMMMMM##      ##      mmmmmmmmmm                                              \n");
+                        printf("        ##    ::##MMMMMMMMMMMM##              mm          mmmmmm  mmmm  mm  ::mm                     \n");
+                        printf("        mm      ##@@########MMMM    ##      ++mm        mmmm  mmmmmmmm  mm  ::mm                     \n");
+                        printf("          ##      ############    --          mm++      mmmm  mmmm++mm  mm++mmmm                     \n");
+                        printf("            ##    ##@@@@@@@@    mm            mmmmmmmmmm..mmmmmm::  mmmm  mmmm                       \n");
+                        printf("              MM##  ......  ..##                  mm::      ++        ..                             \n");
+                        printf("                    ######--                                                                         \n");
+                        printf("\n");
                         printf("Logado como: %s (%s)\n\n", nomearq, (cargoarq == 1) ? "Colaborador" : "Administrador");
                         printf("---MENU---\n");
                         printf("1- Cadastro de lotes\n");
@@ -280,6 +390,23 @@ int main()
                                 int op3;
                                 // Exemplo de opção para registro e consulta de dados de ração
                                 limparTela();
+                                printf("                ##++      ..##..                mmmmmmmm            mmmm                            \n");
+                                printf("            ++--                ##            mmmm  ::mm            mm++                            \n");
+                                printf("          @@  ####          ++##..##        --mm        --mm    mm  mmmmmmmm++  mmmmmm--++mmmmmm    \n");
+                                printf("          ..####              @@    ##      mmmm        --mm    mm  mmmm  mmmm  mm  mmmm  mmmmmm    \n");
+                                printf("        ##    ##              ..  ##..        mmmm    mm  mm++mmmm  mmmm  mmmm++mmmm      mm        \n");
+                                printf("        ..  ##..  @@########  ##  ..  ##      mmmmmmmmmm  --mmmm    mmmmmmmmmm  mmmmmmmm  mm        \n");
+                                printf("            --  ##MMMMMMMMMMMM  ##    ##          ::      ..mmmm                  ..                \n");
+                                printf("      MM  mm######MMMMMMMMMMMM######  ##                  mmmm                                      \n");
+                                printf("      ++  ##mm##@@####MMMM##MM##mm##--##        mmmmmm                                                \n");
+                                printf("              @@@@MMMMMMMMMMMM##      ##      mmmmmmmmmm                                              \n");
+                                printf("        ##    ::##MMMMMMMMMMMM##              mm          mmmmmm  mmmm  mm  ::mm                     \n");
+                                printf("        mm      ##@@########MMMM    ##      ++mm        mmmm  mmmmmmmm  mm  ::mm                     \n");
+                                printf("          ##      ############    --          mm++      mmmm  mmmm++mm  mm++mmmm                     \n");
+                                printf("            ##    ##@@@@@@@@    mm            mmmmmmmmmm..mmmmmm::  mmmm  mmmm                       \n");
+                                printf("              MM##  ......  ..##                  mm::      ++        ..                             \n");
+                                printf("                    ######--                                                                         \n");
+                                printf("\n");
                                 printf("--- Gestão de Ração e Vendas ---\n");
                                 printf("1 - Registrar dados de ração\n");
                                 printf("2 - Exibir dados registrados\n");
@@ -340,5 +467,10 @@ int main()
 
     return 0;
 }
+
 ```
 
+
+
+   
+    
