@@ -4,11 +4,31 @@
 #define MAX_ANIMAIS 100  // Definindo o limite de animais por lote
 #define MAX_TAREFA 256
 
+/**
+Principal header do código, objetivo de cadastro de lotes de gado dentro da propiedade,
+dentro desse codigo é possível armazenar diferentes tipos de dados:
+
+- Numero de identificação do lote
+- Numero de animais contidos nesse lote
+- Idade média em meses
+- Peso atual(data de cadastro)
+- Expectativa de ganho de peso ideal
+- sexo
+- Consumo diario
+- Custo com alimentação (mensal)
+
+Todos esses dados são cadastrados dentro de um txt que é utilizado posteriormente no código.
+
+**/
 // Definindo a estrutura Animal
+
 typedef struct {
+    // Struct fundamental de definição da estrutura de lotes
     int lote, numeroAnimais, idadeMeses;
+    // Dados basicos de lote
     float pesoAtual, ganhoPesoIdeal;
-    char sexo[30];
+    // Definição de dados para cadastro e previsões
+    char sexo[30]; // Definição de sexo dos animais do lote
     float consumoAlimento; // Consumo de alimento
     float custoAlimentacao; // Custo de alimentação
 }Animal;
@@ -37,6 +57,7 @@ void cadastrarLote(Animal animais[], int *quantidade) {
             scanf("%f", &animais[i].consumoAlimento);
             printf("Digite o custo da alimentação por animal (R$): ");
             scanf("%f", &animais[i].custoAlimentacao);
+            // Entrada de Dados do usuário para definição de lotes, dados salvos em um .txt
         }
 
         printf("Lote cadastrado com sucesso!\n");
@@ -53,6 +74,7 @@ void listarLotes(Animal animais[], int *quantidade) {
                animais[i].pesoAtual,
                animais[i].sexo,
                animais[i].idadeMeses);
+               //Função para listagem dos dados ja cadastrados de um lote
     }
     printf("-----------------------------\n");
 }
